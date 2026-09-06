@@ -1,10 +1,10 @@
-package com.meavalie;
+package br.edu.ufersa.pw.todo.buggytrip;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MeavalieApplicationTests {
+class TodoApiApplicationTests {
 
 	@Test
 	void contextLoads() {
