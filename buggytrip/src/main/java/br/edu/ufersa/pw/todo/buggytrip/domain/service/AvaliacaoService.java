@@ -1,7 +1,10 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.service;
 
-import com.buggytrip.model.Avaliacao;
-import com.buggytrip.repository.AvaliacaoRepository;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.AvaliacaoEntity;
+import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.AvaliacaoRepository;
+
+
+import java.util.List;
 
 public class AvaliacaoService {
     private final AvaliacaoRepository repository;
@@ -10,11 +13,11 @@ public class AvaliacaoService {
         this.repository = repository;
     }
 
-    public List<Avaliacao> listar() {
+    public List<AvaliacaoEntity> listar() {
         return repository.findAll();
     }
 
-    public Avaliacao salvar(Avaliacao avaliacao) {
+    public AvaliacaoEntity salvar(AvaliacaoEntity avaliacao) {
         return repository.save(avaliacao);
     }
 }

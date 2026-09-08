@@ -1,6 +1,6 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.controllers;
-import com.buggytrip.model.Avaliacao;
-import com.buggytrip.service.AvaliacaoService;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.AvaliacaoEntity;
+import br.edu.ufersa.pw.todo.buggytrip.domain.service.AvaliacaoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +15,12 @@ public class AvaliacaoController {
     }
 
     @GetMapping
-    public List<Avaliacao> listar() {
+    public List<AvaliacaoEntity> listar() {
         return service.listar();
     }
 
     @PostMapping
-    public Avaliacao salvar(@RequestBody Avaliacao avaliacao) {
+    public AvaliacaoEntity salvar(@RequestBody AvaliacaoEntity avaliacao) {
         return service.salvar(avaliacao);
     }
 }

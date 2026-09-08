@@ -1,7 +1,10 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.service;
-import com.buggytrip.model.Usuario;
-import com.buggytrip.repository.UsuarioRepository;
+import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioDTO;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.UsuarioEntity;
+import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -12,11 +15,11 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public List<Usuario> listar() {
+    public List<UsuarioEntity> listar() {
         return repository.findAll();
     }
 
-    public Usuario salvar(Usuario usuario) {
+    public UsuarioEntity salvar(UsuarioDTO usuario) {
         return repository.save(usuario);
     }
 
