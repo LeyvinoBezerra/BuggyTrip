@@ -1,6 +1,9 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.controllers;
 
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioDTO;
+import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioPatch;
+import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioResponse;
+import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioUpdate;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.UsuarioEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

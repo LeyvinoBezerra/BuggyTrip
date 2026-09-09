@@ -1,4 +1,4 @@
-package br.edu.ufersa.pw.todo.buggytrip.api.controllers;
+package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
 
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.Estado;
 
