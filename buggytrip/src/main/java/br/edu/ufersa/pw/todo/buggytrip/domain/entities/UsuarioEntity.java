@@ -1,5 +1,6 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.entities;
 
+import br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,5 +22,5 @@ public class UsuarioEntity {
     private String senha;
 
     @Column(nullable = false)
-    private String tipo; // "AVALIADOR", "BUGUEIRO", "ADM"
+    private EnumUsuario usuarioTipo; // "AVALIADOR", "BUGUEIRO", "ADM"
 }

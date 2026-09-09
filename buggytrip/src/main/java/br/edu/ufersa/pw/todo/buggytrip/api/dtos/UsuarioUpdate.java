@@ -1,8 +1,10 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
 
+import br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario;
+
 import java.time.LocalDate;
 
-public record UsuarioUpdate(Long id, String item, LocalDate prazo, Estado estado) {
+public record UsuarioUpdate(String nome, String email, String senha, EnumUsuario tipo) {
     public UsuarioUpdate{
         if(id==null)
             throw new IllegalArgumentException("O id é obrigatório!");
