@@ -5,11 +5,24 @@ import br.edu.ufersa.pw.todo.buggytrip.api.enume.Estado;
 
 import java.time.LocalDate;
 
+import static br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario.AVALIADOR;
+
 public record UsuarioCreate(String nome, String email, String senha, EnumUsuario tipo) {
-    public  UsuarioCreate{
-        if(item==null|| item.isBlank())
-            throw  new IllegalArgumentException("o item é obrigatorio");
-        if(prazo==null) prazo = LocalDate.now();
-        if(estado==null) estado= Estado.EM_ANDAMENTO;
+    public UsuarioCreate {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("O nome é obrigatório");
+        }
+
+        if (email == null || email.isBlank()) {
+            email = String.valueOf(LocalDate.now());
+        }
+
+        if (senha == null || senha.isBlank()) {
+            senha = email;
+        }
+
+        if (tipo == null) {
+            tipo = EnumUsuario.AVALIADOR;
+        }
     }
 }
