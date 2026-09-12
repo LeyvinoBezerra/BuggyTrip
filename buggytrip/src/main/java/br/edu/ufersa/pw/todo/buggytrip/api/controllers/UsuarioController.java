@@ -1,67 +1,56 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.controllers;
 
-import br.edu.ufersa.pw.todo.buggytrip.api.dto.UsuarioDTO;
-import br.edu.ufersa.pw.todo.buggytrip.api.entity.UsuarioEntity;
-import br.edu.ufersa.pw.todo.buggytrip.api.record.UsuarioPatch;
-import br.edu.ufersa.pw.todo.buggytrip.api.record.UsuarioUpdate;
-import br.edu.ufersa.pw.todo.buggytrip.api.record.UsuarioResponse;
+import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioDTO;
+import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioPatch;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.UsuarioEntity;
+import br.edu.ufersa.pw.todo.buggytrip.domain.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/user/{userId}/usuarios")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
-    @GetMapping
-    public <UsuarioResponse> ResponseEntity<List<UsuarioResponse>> listar(
-            @PathVariable Long userId) {
-        // lógica para listar usuários de um determinado userId
-        return ResponseEntity.ok(List.of());
+    private final UsuarioService service;
+
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
     }
 
-    @GetMapping("/{usuarioId}")
-    public <UsuarioResponse> ResponseEntity<UsuarioResponse> buscarPorId(
-            @PathVariable Long userId,
-            @PathVariable Long usuarioId) {
-        // lógica para buscar usuário específico
-        return ResponseEntity.ok(null);
+    @GetMapping
+    public ResponseEntity<List<UsuarioEntity>> listar() {
+        return ResponseEntity.ok(service.listar());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioEntity> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(service.buscarPorId(id));
     }
 
     @PostMapping
-    public <UsuarioEntity> ResponseEntity<UsuarioEntity> salvar(
-            @RequestBody UsuarioDTO dto,
-            @PathVariable Long userId,
-            UriComponentsBuilder uriBuilder) {
-        // lógica para salvar novo usuário
-        return ResponseEntity.ok(null);
+    public ResponseEntity<UsuarioEntity> salvar(@RequestBody UsuarioDTO dto) {
+        return ResponseEntity.status(201).body(service.salvar(dto));
     }
 
-    @PutMapping("/{usuarioId}")
-    public ResponseEntity<UsuarioResponse> atualizar(
-            @PathVariable Long userId,
-            @PathVariable Long usuarioId,
-            @RequestBody UsuarioUpdate dto) {
-        // lógica para atualizar usuário
-        return ResponseEntity.ok(null);
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioEntity> atualizar(
+            @PathVariable Long id,
+            @RequestBody UsuarioDTO dto) {
+        return ResponseEntity.ok(service.atualizar(id, dto));
     }
 
-    @PatchMapping("/{usuarioId}")
-    public ResponseEntity<UsuarioResponse> alterarParcial(
-            @PathVariable Long userId,
-            @PathVariable Long usuarioId,
+    @PatchMapping("/{id}")
+    public ResponseEntity<UsuarioEntity> alterarParcial(
+            @PathVariable Long id,
             @RequestBody UsuarioPatch dto) {
-        // lógica para atualização parcial
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(service.alterarParcial(id, dto));
     }
 
-    @DeleteMapping("/{usuarioId}")
-    public ResponseEntity<Void> remover(
-            @PathVariable Long userId,
-            @PathVariable Long usuarioId) {
-        // lógica para remover usuário
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        service.remover(id);
         return ResponseEntity.noContent().build();
     }
 }

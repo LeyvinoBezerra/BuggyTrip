@@ -23,4 +23,9 @@ public class UsuarioEntity {
 
     @Column(nullable = false)
     private EnumUsuario usuarioTipo; // "AVALIADOR", "BUGUEIRO", "ADM"
+
+    public void setNome(String nome) { this.nome = nome; }
+    public void setEmail(String email) { this.email = email; }
+    public void setSenha(String senha) { this.senha = senha; }
+    public void setUsuarioTipo(EnumUsuario usuarioTipo) { this.usuarioTipo = usuarioTipo; }
 }
