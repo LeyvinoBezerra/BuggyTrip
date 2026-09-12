@@ -1,33 +1,23 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+
+
+
+package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
+
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
-@Data
-public class AvaliacaoDTO {
-    @Min(1) @Max(5) private int seguranca;
-    @Min(1) @Max(5) private int conhecimentoRoteiro;
-    @Min(1) @Max(5) private int confortoVeiculo;
-    @Min(1) @Max(5) private int simpatiaMotorista;
-    @Min(1) @Max(5) private int experienciaGeral;
-    @Min(1) @Max(5) private int adaptabilidade;
-    @Min(1) @Max(5) private int paradasInteressantes;
-    private String diferencial;
-    private String feedback;
-    @NotNull private Long avaliadorId;
-    @NotNull private Long bugueiroId;
-
-    public int getSeguranca() { return seguranca; }
-    public int getConhecimentoRoteiro() { return conhecimentoRoteiro; }
-    public int getConfortoVeiculo() { return confortoVeiculo; }
-    public int getSimpatiaMotorista() { return simpatiaMotorista; }
-    public int getExperienciaGeral() { return experienciaGeral; }
-    public int getAdaptabilidade() { return adaptabilidade; }
-    public int getParadasInteressantes() { return paradasInteressantes; }
-    public String getDiferencial() { return diferencial; }
-    public String getFeedback() { return feedback; }
-    public Long getAvaliadorId() { return avaliadorId; }
-    public Long getBugueiroId() { return bugueiroId; }
-}
+public record AvaliacaoDTO(
+        @NotBlank(message = "Segurança não pode estar em branco") String seguranca,
+        @NotBlank(message = "Conhecimento do roteiro não pode estar em branco") String conhecimentoRoteiro,
+        @NotBlank(message = "Conforto do veículo não pode estar em branco") String confortoVeiculo,
+        @NotBlank(message = "Simpatia do motorista não pode estar em branco") String simpatiaMotorista,
+        @NotBlank(message = "Experiência geral não pode estar em branco") String experienciaGeral,
+        @NotBlank(message = "Adaptabilidade não pode estar em branco") String adaptabilidade,
+        @NotBlank(message = "Paradas interessantes não pode estar em branco") String paradasInteressantes,
+        @NotBlank(message = "Diferencial não pode estar em branco") String diferencial,
+        @NotBlank(message = "Feedback não pode estar em branco") String feedback,
+        @NotNull(message = "O avaliadorId é obrigatório") Long avaliadorId,
+        @NotNull(message = "O bugueiroId é obrigatório") Long bugueiroId
+) {}

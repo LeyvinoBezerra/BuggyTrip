@@ -30,14 +30,14 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioEntity> salvar(@RequestBody UsuarioDTO dto) {
+    public ResponseEntity<UsuarioEntity> salvar(@Valid @RequestBody UsuarioDTO dto) {
         return ResponseEntity.status(201).body(service.salvar(dto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioEntity> atualizar(
             @PathVariable Long id,
-            @RequestBody UsuarioDTO dto) {
+            @Valid @RequestBody UsuarioDTO dto) {
         return ResponseEntity.ok(service.atualizar(id, dto));
     }
 

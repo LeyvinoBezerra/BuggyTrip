@@ -30,15 +30,5 @@ public class AvaliacaoEntity {
     @JoinColumn(name = "bugueiro_id")
     private UsuarioEntity bugueiro; // motorista
 
-    public void setSeguranca(int value) { this.seguranca = value; }
-    public void setConhecimentoRoteiro(int value) { this.conhecimentoRoteiro = value; }
-    public void setConfortoVeiculo(int value) { this.confortoVeiculo = value; }
-    public void setSimpatiaMotorista(int value) { this.simpatiaMotorista = value; }
-    public void setExperienciaGeral(int value) { this.experienciaGeral = value; }
-    public void setAdaptabilidade(int value) { this.adaptabilidade = value; }
-    public void setParadasInteressantes(int value) { this.paradasInteressantes = value; }
-    public void setDiferencial(String value) { this.diferencial = value; }
-    public void setFeedback(String value) { this.feedback = value; }
-    public void setAvaliador(UsuarioEntity value) { this.avaliador = value; }
-    public void setBugueiro(UsuarioEntity value) { this.bugueiro = value; }
+
 }

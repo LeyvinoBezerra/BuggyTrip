@@ -32,7 +32,8 @@ public class UsuarioService {
         return repository.save(toEntity(dto));
     }
 
-    public UsuarioEntity atualizar(Long id, UsuarioDTO dto) {
+    public UsuarioEntity atualizar(Long id, UsuarioDTO dto)
+    {
         UsuarioEntity usuario = buscarPorId(id);
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
