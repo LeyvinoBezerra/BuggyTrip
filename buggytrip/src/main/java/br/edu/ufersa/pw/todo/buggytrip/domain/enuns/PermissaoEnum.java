@@ -1,17 +1,15 @@
-package br.edu.ufersa.pw.todo.buggytrip.domain.entities;
+/*package br.edu.ufersa.pw.todo.buggytrip.domain.enuns;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Setter
-@Entity
-@Table
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class PermissaoEnum {
 
-    //TODO [Reverse Engineering] generate columns from DB
     // Permissões de acesso gestao de usuários e perfis
     GERENCIAR_USUARIOS("Gerenciar Usuários"),
     GERENCIAR_PERFIS("Gerenciar Perfis"),
@@ -31,3 +29,4 @@ public class PermissaoEnum {
     private String descricao;
 
 }
+*/

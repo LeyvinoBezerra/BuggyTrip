@@ -1,5 +1,6 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.entities;
 
+import br.edu.ufersa.pw.todo.buggytrip.features.usuario.PermissaoEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

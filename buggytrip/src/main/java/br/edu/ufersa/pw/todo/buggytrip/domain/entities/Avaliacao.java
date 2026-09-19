@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "avaliacoes")
-public class AvaliacaoEntity {
+public class Avaliacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,11 +24,11 @@ public class AvaliacaoEntity {
 
     @ManyToOne
     @JoinColumn(name = "avaliador_id")
-    private UsuarioEntity avaliador; // cliente
+    private Usuario avaliador; // cliente
 
     @ManyToOne
     @JoinColumn(name = "bugueiro_id")
-    private UsuarioEntity bugueiro; // motorista
+    private Usuario bugueiro; // motorista
 
 
 }

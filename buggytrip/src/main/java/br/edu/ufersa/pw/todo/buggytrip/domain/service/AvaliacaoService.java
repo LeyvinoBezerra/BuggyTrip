@@ -1,8 +1,8 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.service;
 
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.AvaliacaoDTO;
-import br.edu.ufersa.pw.todo.buggytrip.domain.entities.AvaliacaoEntity;
-import br.edu.ufersa.pw.todo.buggytrip.domain.entities.UsuarioEntity;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Avaliacao;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Usuario;
 import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.AvaliacaoRepository;
 import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.UsuarioRepository;
 import org.springframework.http.HttpStatus;
@@ -23,38 +23,38 @@ public class AvaliacaoService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<AvaliacaoEntity> listar() {
+    public List<Avaliacao> listar() {
         return repository.findAll();
     }
 
-    public AvaliacaoEntity buscarPorId(Long id) {
+    public Avaliacao buscarPorId(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Avaliação não encontrada"));
     }
 
-    public AvaliacaoEntity salvar(AvaliacaoDTO dto) {
+    public Avaliacao salvar(AvaliacaoDTO dto) {
         return repository.save(toEntity(dto));
     }
 
-    public AvaliacaoEntity atualizar(Long id, AvaliacaoDTO dto) {
-        AvaliacaoEntity avaliacao = buscarPorId(id);
+    public Avaliacao atualizar(Long id, AvaliacaoDTO dto) {
+        Avaliacao avaliacao = buscarPorId(id);
         copy(dto, avaliacao);
         return repository.save(avaliacao);
     }
 
     public void remover(Long id) {
-        AvaliacaoEntity avaliacao = buscarPorId(id);
+        Avaliacao avaliacao = buscarPorId(id);
         repository.delete(avaliacao);
     }
 
-    private AvaliacaoEntity toEntity(AvaliacaoDTO dto) {
-        AvaliacaoEntity avaliacao = new AvaliacaoEntity();
+    private Avaliacao toEntity(AvaliacaoDTO dto) {
+        Avaliacao avaliacao = new Avaliacao();
         copy(dto, avaliacao);
         return avaliacao;
     }
 
-    private void copy(AvaliacaoDTO dto, AvaliacaoEntity avaliacao) {
+    private void copy(AvaliacaoDTO dto, Avaliacao avaliacao) {
         avaliacao.setSeguranca(dto.getSeguranca());
         avaliacao.setConhecimentoRoteiro(dto.getConhecimentoRoteiro());
         avaliacao.setConfortoVeiculo(dto.getConfortoVeiculo());
@@ -68,7 +68,7 @@ public class AvaliacaoService {
         avaliacao.setBugueiro(buscarUsuario(dto.getBugueiroId()));
     }
 
-    private UsuarioEntity buscarUsuario(Long id) {
+    private Usuario buscarUsuario(Long id) {
         if (id == null) return null;
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(

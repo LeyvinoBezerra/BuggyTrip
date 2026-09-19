@@ -1,6 +1,6 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
 
-import br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario;
+import br.edu.ufersa.pw.todo.buggytrip.features.usuario.enume.EnumUsuario;
 
 
 import com.sun.istack.NotNull;
@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record UsuarioDTO(
+  record UsuarioDTO(
         @NotBlank(message = "O nome é obrigatório")
         String nome,
 

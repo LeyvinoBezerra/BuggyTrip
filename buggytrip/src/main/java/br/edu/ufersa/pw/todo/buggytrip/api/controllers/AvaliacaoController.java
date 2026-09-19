@@ -1,16 +1,18 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.controllers;
 
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.AvaliacaoDTO;
-import br.edu.ufersa.pw.todo.buggytrip.domain.entities.AvaliacaoEntity;
 import br.edu.ufersa.pw.todo.buggytrip.domain.service.AvaliacaoService;
-import jakarta.persistence.Id;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Avaliacao;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/users/{userId}/avaliacoes")
+@RequestMapping("/avaliacoes")
 public class AvaliacaoController {
 
     private final AvaliacaoService service;
@@ -19,31 +21,38 @@ public class AvaliacaoController {
         this.service = service;
     }
 
+    // Listar todas as avaliações
     @GetMapping
-    public ResponseEntity<List<AvaliacaoEntity>> listar() {
+    public ResponseEntity<List<Avaliacao>> listar() {
         return ResponseEntity.ok(service.listar());
     }
 
+    // Buscar avaliação por ID
     @GetMapping("/{id}")
-    public ResponseEntity<AvaliacaoEntity> buscarPorId(
-            @PathVariable Long id) {
+    public ResponseEntity<Avaliacao> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
+    // Salvar nova avaliação
     @PostMapping
-    public ResponseEntity<AvaliacaoEntity> salvar(
-            @PathVariable Long Id,
-            @RequestBody AvaliacaoDTO dto) {
-        return ResponseEntity.status(201).body(service.salvar(dto));
+    public ResponseEntity<Avaliacao> salvar(@Valid @RequestBody AvaliacaoDTO dto) {
+        Avaliacao nova = service.salvar(dto);
+        return ResponseEntity.ok(nova);
     }
 
+    // Atualizar avaliação (PUT)
     @PutMapping("/{id}")
-    public ResponseEntity<AvaliacaoEntity> atualizar(
-            @PathVariable Long Id,
-            @PathVariable Long userId,
-            @RequestBody AvaliacaoDTO dto) {
-        return null;
+    public ResponseEntity<Avaliacao> atualizar(@PathVariable Long id, @Valid @RequestBody AvaliacaoDTO dto) {
+        return ResponseEntity.ok(service.atualizar(id, dto));
     }
+
+    // Atualizar parcialmente avaliação (PATCH)
+    @PatchMapping("/{id}")
+    public ResponseEntity<Avaliacao> atualizarParcial(@PathVariable Long id, @RequestBody AvaliacaoDTO dto) {
+        return ResponseEntity.ok(service.atualizarParcial(id, dto));
+    }
+
+    // Remover avaliação
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
         service.remover(id);

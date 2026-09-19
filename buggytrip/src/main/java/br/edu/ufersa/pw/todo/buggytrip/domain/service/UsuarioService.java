@@ -1,8 +1,8 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.service;
 
-import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioDTO;
+import br.edu.ufersa.pw.todo.buggytrip.features.usuario.UsuarioDTO;
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioPatch;
-import br.edu.ufersa.pw.todo.buggytrip.domain.entities.UsuarioEntity;
+import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Usuario;
 import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.UsuarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,23 +18,23 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public List<UsuarioEntity> listar() {
+    public List<Usuario> listar() {
         return repository.findAll();
     }
 
-    public UsuarioEntity buscarPorId(Long id) {
+    public Usuario buscarPorId(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Usuário não encontrado"));
     }
 
-    public UsuarioEntity salvar(UsuarioDTO dto) {
+    public Usuario salvar(UsuarioDTO dto) {
         return repository.save(toEntity(dto));
     }
 
-    public UsuarioEntity atualizar(Long id, UsuarioDTO dto)
+    public Usuario atualizar(Long id, UsuarioDTO dto)
     {
-        UsuarioEntity usuario = buscarPorId(id);
+        Usuario usuario = buscarPorId(id);
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(dto.getSenha());
@@ -42,8 +42,8 @@ public class UsuarioService {
         return repository.save(usuario);
     }
 
-    public UsuarioEntity alterarParcial(Long id, UsuarioPatch dto) {
-        UsuarioEntity usuario = buscarPorId(id);
+    public Usuario alterarParcial(Long id, UsuarioPatch dto) {
+        Usuario usuario = buscarPorId(id);
         if (dto.nome() != null) usuario.setNome(dto.nome());
         if (dto.email() != null) usuario.setEmail(dto.email());
         if (dto.senha() != null) usuario.setSenha(dto.senha());
@@ -52,12 +52,12 @@ public class UsuarioService {
     }
 
     public void remover(Long id) {
-        UsuarioEntity usuario = buscarPorId(id);
+        Usuario usuario = buscarPorId(id);
         repository.delete(usuario);
     }
 
-    private UsuarioEntity toEntity(UsuarioDTO dto) {
-        UsuarioEntity usuario = new UsuarioEntity();
+    private Usuario toEntity(UsuarioDTO dto) {
+        Usuario usuario = new Usuario();
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(dto.getSenha());

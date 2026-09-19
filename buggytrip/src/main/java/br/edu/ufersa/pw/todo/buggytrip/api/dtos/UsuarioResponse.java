@@ -1,13 +1,10 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
 
 
-import br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario;
-import br.edu.ufersa.pw.todo.buggytrip.api.enume.Estado;
+import br.edu.ufersa.pw.todo.buggytrip.features.usuario.enume.EnumUsuario;
+import br.edu.ufersa.pw.todo.buggytrip.features.usuario.enume.Estado;
 
 import java.time.LocalDate;
-
-import java.time.LocalDate;
-import br.edu.ufersa.pw.todo.buggytrip.api.enume.Estado;
 
 public record UsuarioResponse(
         Long id,

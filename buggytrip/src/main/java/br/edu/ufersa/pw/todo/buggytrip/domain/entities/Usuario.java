@@ -1,13 +1,14 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.entities;
 
-import br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario;
+
+import br.edu.ufersa.pw.todo.buggytrip.domain.enuns.EnumUsuario;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "usuarios")
-public class UsuarioEntity {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

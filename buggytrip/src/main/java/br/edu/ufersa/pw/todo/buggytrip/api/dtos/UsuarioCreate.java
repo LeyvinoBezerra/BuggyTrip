@@ -1,11 +1,8 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
 
-import br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario;
-import br.edu.ufersa.pw.todo.buggytrip.api.enume.Estado;
+import br.edu.ufersa.pw.todo.buggytrip.features.usuario.enume.EnumUsuario;
 
 import java.time.LocalDate;
-
-import static br.edu.ufersa.pw.todo.buggytrip.api.enume.EnumUsuario.AVALIADOR;
 
 public record UsuarioCreate(String nome, String email, String senha, EnumUsuario tipo) {
     public UsuarioCreate {
