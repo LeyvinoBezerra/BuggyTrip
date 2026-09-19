@@ -1,6 +1,5 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.entities;
 
-
 import br.edu.ufersa.pw.todo.buggytrip.domain.enuns.EnumUsuario;
 import jakarta.persistence.*;
 import lombok.Data;

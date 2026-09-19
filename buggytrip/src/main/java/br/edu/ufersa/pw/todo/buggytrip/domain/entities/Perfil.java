@@ -1,6 +1,7 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.entities;
 
-import br.edu.ufersa.pw.todo.buggytrip.features.usuario.PermissaoEnum;
+
+import br.edu.ufersa.pw.todo.buggytrip.domain.enuns.EnumUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,7 +31,7 @@ public class Perfil {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "per_descricao", length = 50)
-    private br.edu.ufersa.pw.todo.buggytrip.domain.entities.PermissaoEnum permissoes;///// crear enum permição
+    private EnumUsuario permissoes;///// crear enum permição
 
     @Column(name = "per_acesso_global")
     private Boolean acessoGlobal;
