@@ -1,6 +1,9 @@
-package br.edu.ufersa.pw.todo.buggytrip.api.dtos;
+package br.edu.ufersa.pw.todo.buggytrip.api.dtos.Usuario.response;
 
-public class PerfilGetResponse {
+import lombok.*;
+
+import java.time.LocalDateTime;
+
 
     @Getter
     @Setter
@@ -15,20 +18,10 @@ public class PerfilGetResponse {
 
         private String email;
 
-        private LocalDate dataAdmissao;
-
-        private LocalDate dataDemissao;
-
-        private StatusEnum status;
-
-        private String tipoContrato;
-
-        private BigDecimal salarioBase;
-
         private LocalDateTime dataCriacao;
 
         private LocalDateTime dataAtualizacao;
 
         private Integer numeroVersao;
     }
-}
+

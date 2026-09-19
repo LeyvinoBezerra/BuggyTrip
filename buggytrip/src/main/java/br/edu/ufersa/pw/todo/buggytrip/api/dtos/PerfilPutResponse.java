@@ -16,11 +16,9 @@ public class PerfilPutResponse {
 
         private Long id;
 
-        private PessoaGetResponse pessoa;
+        private UsuarioGetResponse pessoa;
 
         private String email;
-
-        private StatusEnum status;
 
         private LocalDateTime dataCriacao;
 
