@@ -18,8 +18,6 @@ public interface UsuarioMapper {
 
     Usuario toUsuario(UsuarioPostRequest request);
 
-    Usuario toUsuario(UsuarioPutRequest request);
-
     UsuarioPostResponse toUsuarioPostResponse(Usuario usuario);
 
     UsuarioPutResponse toUsuarioPutResponse(Usuario usuario);

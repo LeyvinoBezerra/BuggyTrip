@@ -1,7 +1,9 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.service;
 
+import br.edu.ufersa.pw.todo.buggytrip.api.dtos.Avaliacao.request.AvaliacaoPostRequest;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Avaliacao;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Usuario;
+import br.edu.ufersa.pw.todo.buggytrip.domain.mappers.AvaliacaoMapper;
 import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.AvaliacaoRepository;
 import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.UsuarioRepository;
 import org.springframework.http.HttpStatus;
@@ -14,12 +16,15 @@ import java.util.List;
 public class AvaliacaoService {
     private final AvaliacaoRepository repository;
     private final UsuarioRepository usuarioRepository;
+    private final AvaliacaoMapper mapper;
 
     public AvaliacaoService(
             AvaliacaoRepository repository,
-            UsuarioRepository usuarioRepository) {
+            UsuarioRepository usuarioRepository,
+            AvaliacaoMapper mapper) {
         this.repository = repository;
         this.usuarioRepository = usuarioRepository;
+        this.mapper = mapper;
     }
 
     public List<Avaliacao> listar() {
@@ -32,13 +37,26 @@ public class AvaliacaoService {
                         HttpStatus.NOT_FOUND, "Avaliação não encontrada"));
     }
 
-    public Avaliacao salvar(AvaliacaoDTO dto) {
-        return repository.save(toEntity(dto));
+    public Avaliacao salvar(AvaliacaoPostRequest dto) {
+        Avaliacao avaliacao = mapper.toAvaliacao(dto);
+        avaliacao.setAvaliador(buscarUsuario(dto.avaliadorId()));
+        avaliacao.setBugueiro(buscarUsuario(dto.bugueiroId()));
+        return repository.save(avaliacao);
     }
 
-    public Avaliacao atualizar(Long id, AvaliacaoDTO dto) {
+    public Avaliacao atualizar(Long id, AvaliacaoPostRequest dto) {
         Avaliacao avaliacao = buscarPorId(id);
-        copy(dto, avaliacao);
+        copy(mapper.toAvaliacao(dto), avaliacao);
+        avaliacao.setAvaliador(buscarUsuario(dto.avaliadorId()));
+        avaliacao.setBugueiro(buscarUsuario(dto.bugueiroId()));
+        return repository.save(avaliacao);
+    }
+
+    public Avaliacao atualizarParcial(Long id, AvaliacaoPostRequest dto) {
+        Avaliacao avaliacao = buscarPorId(id);
+        copy(mapper.toAvaliacao(dto), avaliacao);
+        avaliacao.setAvaliador(buscarUsuario(dto.avaliadorId()));
+        avaliacao.setBugueiro(buscarUsuario(dto.bugueiroId()));
         return repository.save(avaliacao);
     }
 
@@ -47,28 +65,22 @@ public class AvaliacaoService {
         repository.delete(avaliacao);
     }
 
-    private Avaliacao toEntity(AvaliacaoDTO dto) {
-        Avaliacao avaliacao = new Avaliacao();
-        copy(dto, avaliacao);
-        return avaliacao;
-    }
-
-    private void copy(AvaliacaoDTO dto, Avaliacao avaliacao) {
-        avaliacao.setSeguranca(dto.getSeguranca());
-        avaliacao.setConhecimentoRoteiro(dto.getConhecimentoRoteiro());
-        avaliacao.setConfortoVeiculo(dto.getConfortoVeiculo());
-        avaliacao.setSimpatiaMotorista(dto.getSimpatiaMotorista());
-        avaliacao.setExperienciaGeral(dto.getExperienciaGeral());
-        avaliacao.setAdaptabilidade(dto.getAdaptabilidade());
-        avaliacao.setParadasInteressantes(dto.getParadasInteressantes());
-        avaliacao.setDiferencial(dto.getDiferencial());
-        avaliacao.setFeedback(dto.getFeedback());
-        avaliacao.setAvaliador(buscarUsuario(dto.getAvaliadorId()));
-        avaliacao.setBugueiro(buscarUsuario(dto.getBugueiroId()));
+    private void copy(Avaliacao origem, Avaliacao destino) {
+        destino.setSeguranca(origem.getSeguranca());
+        destino.setConhecimentoRoteiro(origem.getConhecimentoRoteiro());
+        destino.setConfortoVeiculo(origem.getConfortoVeiculo());
+        destino.setSimpatiaMotorista(origem.getSimpatiaMotorista());
+        destino.setExperienciaGeral(origem.getExperienciaGeral());
+        destino.setAdaptabilidade(origem.getAdaptabilidade());
+        destino.setParadasInteressantes(origem.getParadasInteressantes());
+        destino.setDiferencial(origem.getDiferencial());
+        destino.setFeedback(origem.getFeedback());
     }
 
     private Usuario buscarUsuario(Long id) {
-        if (id == null) return null;
+        if (id == null) {
+            return null;
+        }
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Usuário relacionado não encontrado"));

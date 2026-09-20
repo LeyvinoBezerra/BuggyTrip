@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(schema = "tb", name = "perfis")
+@Table(schema = "bt", name = "perfis")
 @EntityListeners(AuditingEntityListener.class)
 public class Perfil {
     @Id
