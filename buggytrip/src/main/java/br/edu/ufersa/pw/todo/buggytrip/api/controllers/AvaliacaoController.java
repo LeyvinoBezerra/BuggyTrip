@@ -1,18 +1,17 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.controllers;
 
-import br.edu.ufersa.pw.todo.buggytrip.api.dtos.AvaliacaoDTO;
 import br.edu.ufersa.pw.todo.buggytrip.domain.service.AvaliacaoService;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Avaliacao;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/avaliacoes")
+@RequestMapping("/api/v1/user/{userId}/avaliacao")
+@Validated
 public class AvaliacaoController {
 
     private final AvaliacaoService service;

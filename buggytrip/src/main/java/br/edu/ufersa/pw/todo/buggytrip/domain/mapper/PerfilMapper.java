@@ -1,7 +1,6 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.mapper;
 
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.PerfilGetResponse;
-import br.edu.ufersa.pw.todo.buggytrip.api.dtos.PerfilPutResponse;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Perfil;
 
 import java.util.List;

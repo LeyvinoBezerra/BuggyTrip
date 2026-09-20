@@ -1,6 +1,5 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.service;
 
-import br.edu.ufersa.pw.todo.buggytrip.api.dtos.AvaliacaoDTO;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Avaliacao;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Usuario;
 import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.AvaliacaoRepository;

@@ -1,7 +1,6 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.service;
 
 import br.edu.ufersa.pw.todo.buggytrip.features.usuario.UsuarioDTO;
-import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioPatch;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Usuario;
 import br.edu.ufersa.pw.todo.buggytrip.domain.repositories.UsuarioRepository;
 import org.springframework.http.HttpStatus;

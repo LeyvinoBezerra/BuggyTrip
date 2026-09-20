@@ -1,6 +1,5 @@
 package br.edu.ufersa.pw.todo.buggytrip.domain.entities;
 
-
 import br.edu.ufersa.pw.todo.buggytrip.domain.enuns.EnumUsuario;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(schema = "rh", name = "perfis")
+@Table(schema = "tb", name = "perfis")
 @EntityListeners(AuditingEntityListener.class)
 public class Perfil {
     @Id
@@ -31,7 +30,7 @@ public class Perfil {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "per_descricao", length = 50)
-    private EnumUsuario permissoes;///// crear enum permição
+    private EnumUsuario permissoes; //
 
     @Column(name = "per_acesso_global")
     private Boolean acessoGlobal;
@@ -47,7 +46,5 @@ public class Perfil {
     @Version
     @Column(name = "per_numero_versao", nullable = false)
     private Integer numeroVersao;
-
-
-    //TODO [Reverse Engineering] generate columns from DB
 }
+

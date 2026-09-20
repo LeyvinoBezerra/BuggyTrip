@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
     @EqualsAndHashCode
     @Builder
     @Entity
-    @Table(schema = "rh", name = "pessoas")
+    @Table(schema = "bt", name = "pessoas")
     @EntityListeners(AuditingEntityListener.class)
 
     public class Pessoa {
