@@ -1,11 +1,11 @@
 package br.edu.ufersa.pw.todo.buggytrip.api.controllers;
 
-import br.edu.ufersa.pw.todo.buggytrip.domain.service.AvaliacaoService;
 import br.edu.ufersa.pw.todo.buggytrip.domain.entities.Avaliacao;
+import br.edu.ufersa.pw.todo.buggytrip.domain.service.AvaliacaoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
 
 import java.util.List;
 

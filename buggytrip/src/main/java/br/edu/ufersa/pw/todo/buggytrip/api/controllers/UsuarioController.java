@@ -6,7 +6,8 @@ import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioPutRequest;
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioGetResponse;
 import br.edu.ufersa.pw.todo.buggytrip.api.dtos.UsuarioPutResponse;
 import br.edu.ufersa.pw.todo.buggytrip.domain.service.UsuarioService;
-import br.edu.ufersa.pw.todo.buggytrip.api.mappers.UsuarioMapper;
+import br.edu.ufersa.pw.todo.buggytrip.domain.mappers.UsuarioMapper;
+
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;

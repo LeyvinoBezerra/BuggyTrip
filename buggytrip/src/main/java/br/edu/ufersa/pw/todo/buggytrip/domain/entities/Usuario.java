@@ -4,6 +4,10 @@ import br.edu.ufersa.pw.todo.buggytrip.domain.enuns.EnumUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+@Getter
+@Setter
+@Builder
 @Data
 @Entity
 @Table(schema = "bt", name = "usuarios")
@@ -26,4 +30,6 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(name = "usu_tipo", nullable = false, length = 20)
     private EnumUsuario usuarioTipo; // "AVALIADOR", "BUGUEIRO", "ADM"
+
+
 }
