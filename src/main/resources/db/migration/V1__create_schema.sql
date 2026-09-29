@@ -1,4 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS bt;
+ CREATE SCHEMA IF NOT EXISTS bt;
 CREATE TABLE bt.usuarios
 (
     usu_id               BIGSERIAL PRIMARY KEY,
