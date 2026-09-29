@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: buggytrip
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/buggytrip}
+    username: ${DB_USERNAME:buggytrip}
+    password: ${DB_PASSWORD:buggytrip-local}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    schemas: bt
+    default-schema: bt
+    locations: classpath:db/migration
+  jackson:
+    datatype:
+      datetime:
+        write-dates-as-timestamps: false
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+app:
+  security:
+    jwt:
+      secret: ${JWT_SECRET:change-me-local-secret-at-least-32-bytes-123456}
+      expiration-seconds: ${JWT_EXPIRATION_SECONDS:3600}
+springdoc:
+  api-docs.path: /v3/api-docs
+  swagger-ui.path: /swagger-ui.html
+management:
+  endpoints.web.exposure.include: health,info,metrics
+  endpoint.health.probes.enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+logging:
+  file:
+    name: ${LOG_FILE:logs/buggytrip.log}
+  logback:
+    rollingpolicy:
+      max-file-size: ${LOG_MAX_FILE_SIZE:10MB}
+      max-history: ${LOG_MAX_HISTORY:14}
+      total-size-cap: ${LOG_TOTAL_SIZE_CAP:200MB}
+  level:
+    root: INFO
+    br.edu.ufersa.pw.todo.buggytrip: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+    org.hibernate.orm.jdbc.bind: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%thread] [correlationId=%X{correlationId:-}] %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%thread] [correlationId=%X{correlationId:-}] %logger{36} - %msg%n"
