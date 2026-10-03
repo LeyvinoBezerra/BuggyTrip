@@ -49,6 +49,22 @@ Use uma role por ambiente e conceda somente as ações necessárias: login/uploa
 
 Configure revisores obrigatórios no ambiente `production` para exigir aprovação antes do deploy de produção. Não armazene chaves AWS de longa duração nos secrets do GitHub; o deploy usa OIDC.
 
+### Configuração da aplicação em produção
+
+A task definition ECS deve definir `SPRING_PROFILES_ACTIVE=prod` e fornecer as variáveis de runtime abaixo. Armazene `DB_PASSWORD` e `JWT_SECRET` em um gerenciador de segredos, como AWS Secrets Manager ou Systems Manager Parameter Store, e injete-os como secrets do container; não os coloque no repositório ou nas variáveis do workflow.
+
+| Variável | Uso |
+| --- | --- |
+| `DB_URL` | URL JDBC do PostgreSQL, por exemplo `jdbc:postgresql://host:5432/buggytrip` |
+| `DB_USERNAME` | Usuário do banco |
+| `DB_PASSWORD` | Senha do banco; configure como secret |
+| `JWT_SECRET` | Chave JWT com pelo menos 32 bytes; configure como secret |
+| `JWT_EXPIRATION_SECONDS` | Validade do token em segundos (opcional; padrão `3600`) |
+| `DB_POOL_SIZE` | Limite do pool de conexões (opcional; padrão `10`) |
+| `SERVER_PORT` | Porta HTTP (opcional; padrão `8080`) |
+
+O perfil `prod` mantém o schema sob controle do Flyway e o Hibernate em modo `validate`, desativa Swagger/OpenAPI, oculta detalhes do health check e habilita os probes de liveness/readiness. Logs são enviados ao console para coleta pelo ECS/CloudWatch. A configuração está em `src/main/resources/application-prod.yml`; o arquivo `application.yml` continua sendo a configuração padrão de desenvolvimento.
+
 ## Observações
 
 - A infraestrutura de rede, cluster/serviço ECS, ECR, task definition, banco e roles IAM deve existir antes do primeiro deploy; o workflow não cria infraestrutura.
