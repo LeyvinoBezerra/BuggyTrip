@@ -12,6 +12,14 @@ class SecurityIntegrationTest extends IntegrationTestBase {
     TestRestTemplate http;
 
     @Test
+    void apiRootIsPublic() {
+        var r = http.getForEntity("/", String.class);
+        assertEquals(HttpStatus.OK, r.getStatusCode());
+        assertTrue(r.getBody().contains("BuggyTrip API"));
+        assertTrue(r.getBody().contains("/swagger-ui.html"));
+    }
+
+    @Test
     void endpointProtegido() {
         var r = http.getForEntity("/api/v1/avaliacoes", String.class);
         assertEquals(HttpStatus.FORBIDDEN, r.getStatusCode());
